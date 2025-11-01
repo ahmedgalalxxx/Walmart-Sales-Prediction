@@ -1,6 +1,10 @@
 # Walmart Sales Prediction 📊
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/ahmedgalalxxx/Walmart-Sales-Prediction/blob/main/Walmart_Sales_Prediction_Colab.ipynb)
+
 A comprehensive machine learning project to predict Walmart weekly sales based on various features including store information, holiday flags, temperature, fuel prices, CPI, and unemployment rates.
+
+**🚀 Quick Start:** Click the "Open in Colab" badge above to run the complete project in your browser!
 
 ## 📋 Project Overview
 
