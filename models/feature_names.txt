@@ -14,8 +14,4 @@ Month_Sin
 Month_Cos
 Sales_Lag_1
 Sales_Lag_2
-Sales_Lag_4
 Sales_RollingMean_4
-Sales_RollingStd_4
-Sales_RollingMean_8
-Sales_RollingStd_8

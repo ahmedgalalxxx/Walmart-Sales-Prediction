@@ -74,7 +74,7 @@ class WalmartDataPreprocessor:
         print("Date features extracted successfully!")
         return self.df
     
-    def create_lag_features(self, lags=[1, 2, 4]):
+    def create_lag_features(self, lags=[1, 2]):
         """
         Create lag features for Weekly_Sales.
         
@@ -96,7 +96,7 @@ class WalmartDataPreprocessor:
         print(f"Lag features created for lags: {lags}")
         return self.df
     
-    def create_rolling_features(self, windows=[4, 8]):
+    def create_rolling_features(self, windows=[4]):
         """
         Create rolling statistics features.
         
@@ -111,15 +111,11 @@ class WalmartDataPreprocessor:
         # Sort by Store and Date
         self.df = self.df.sort_values(['Store', 'Date'])
         
-        # Create rolling mean and std for each store
+        # Create rolling mean for each store
         for window in windows:
             self.df[f'Sales_RollingMean_{window}'] = (
                 self.df.groupby('Store')['Weekly_Sales']
                 .transform(lambda x: x.rolling(window=window, min_periods=1).mean())
-            )
-            self.df[f'Sales_RollingStd_{window}'] = (
-                self.df.groupby('Store')['Weekly_Sales']
-                .transform(lambda x: x.rolling(window=window, min_periods=1).std())
             )
         
         print(f"Rolling features created for windows: {windows}")
@@ -187,6 +183,12 @@ class WalmartDataPreprocessor:
         X = self.df.drop(columns=['Weekly_Sales'])
         y = self.df['Weekly_Sales']
         
+        # Drop any datetime columns that might still be present
+        datetime_cols = X.select_dtypes(include=['datetime', 'datetime64']).columns.tolist()
+        if datetime_cols:
+            X = X.drop(columns=datetime_cols)
+            print(f"Dropped datetime columns: {datetime_cols}")
+        
         # Split the data
         X_train, X_test, y_train, y_test = train_test_split(
             X, y, test_size=test_size, random_state=random_state
@@ -210,8 +212,11 @@ class WalmartDataPreprocessor:
         exclude_cols : list
             Columns to exclude from scaling
         """
-        # Identify columns to scale
-        cols_to_scale = [col for col in X_train.columns if col not in exclude_cols]
+        # Identify numerical columns only
+        numerical_cols = X_train.select_dtypes(include=['int64', 'float64']).columns.tolist()
+        
+        # Identify columns to scale (numerical and not excluded)
+        cols_to_scale = [col for col in numerical_cols if col not in exclude_cols]
         
         # Scale training data
         X_train_scaled = X_train.copy()

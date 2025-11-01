@@ -41,37 +41,37 @@ class WalmartModelTrainer:
             'Linear Regression': LinearRegression(),
             
             'Decision Tree': DecisionTreeRegressor(
-                max_depth=10,
-                min_samples_split=20,
-                min_samples_leaf=10,
+                max_depth=6,
+                min_samples_split=40,
+                min_samples_leaf=20,
                 random_state=42
             ),
             
             'Random Forest': RandomForestRegressor(
-                n_estimators=100,
-                max_depth=15,
-                min_samples_split=10,
-                min_samples_leaf=5,
+                n_estimators=30,
+                max_depth=8,
+                min_samples_split=30,
+                min_samples_leaf=15,
                 random_state=42,
                 n_jobs=-1
             ),
             
             'Gradient Boosting': GradientBoostingRegressor(
-                n_estimators=100,
-                learning_rate=0.1,
-                max_depth=5,
-                min_samples_split=10,
-                min_samples_leaf=5,
+                n_estimators=30,
+                learning_rate=0.05,
+                max_depth=3,
+                min_samples_split=30,
+                min_samples_leaf=15,
                 random_state=42
             ),
             
             'XGBoost': XGBRegressor(
-                n_estimators=100,
-                learning_rate=0.1,
-                max_depth=5,
-                min_child_weight=5,
-                subsample=0.8,
-                colsample_bytree=0.8,
+                n_estimators=30,
+                learning_rate=0.05,
+                max_depth=3,
+                min_child_weight=15,
+                subsample=0.7,
+                colsample_bytree=0.6,
                 random_state=42,
                 n_jobs=-1
             )
