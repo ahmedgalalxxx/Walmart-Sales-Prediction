@@ -1,0 +1,26 @@
+======================================================================
+WALMART SALES PREDICTION - VALIDATION REPORT
+======================================================================
+
+CROSS-VALIDATION RESULTS:
+  Mean Score: 0.9083
+  Std Dev: 0.0048
+
+TIME SERIES VALIDATION:
+  Mean R²: 0.9078
+
+PREDICTION METRICS:
+  R² Score: 0.9080
+  MAE: $123,271.27
+  RMSE: $172,153.87
+  MAPE: 16.73%
+
+ACCURACY THRESHOLDS:
+  Within 5%: 26.57%
+  Within 10%: 51.36%
+  Within 20%: 71.79%
+
+CONFIDENCE INTERVAL (95%):
+  [0.8915, 0.9228]
+
+======================================================================
